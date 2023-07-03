@@ -143,7 +143,63 @@ export default function FeedbackForm() {
       <button type="submit">Send</button>
     </form>
   );}
-  //alert(walk ? 'Stop is next' : 'Walk is next');//
+  //alert(walk ? 'Stop is next' : 'Walk is next'); alert와 async 이용//
   //랜더링 시점과, 스냅샷에 대한 추가 공부 필요
+//import { useState } from 'react';는 이제 생략-state 사용할때 위에 달아놓는 것//
+export default function Scoreboard() {
+  const [player, setPlayer] = useState({
+    firstName: 'Ranjani',
+    lastName: 'Shettar',
+    score: 10,
+  });
+
+  function handlePlusClick() {
+    setPlayer({
+      ...player,//스프레드-가져오기//
+      score: player.score + 1,
+    });
+  }
+  function handleFirstNameChange(e) {
+    setPlayer({
+      ...player,
+      firstName: e.target.value,
+    });
+  }
+  function handleLastNameChange(e) {
+    setPlayer({
+      ...player,
+      lastName: e.target.value
+    });
+  }
+  return (
+    <> 
+      <label>
+        Score: <b>{player.score}</b>
+        {' '}
+        <button onClick={handlePlusClick}>
+          +1
+        </button>
+      </label>
+      <label>
+        First name:
+        <input
+          value={player.firstName}
+          onChange={handleFirstNameChange}
+        />
+      </label>
+      <label>
+        Last name:
+        <input
+          value={player.lastName}
+          onChange={handleLastNameChange}
+        />
+      </label>
+    </>
+  );
+}
+//component 쓰기는 하지만 코드가 반복되는 느낌. 더 줄일 수는 없나?
+//찾아보니 redux를 쓰라던데 너무 어려워보임-유튜브 보고 따로 공부하기
+//리액트에서 array=map으로 변경하기(spread로 옛날꺼 복사-map으로 재구성. state는 퓨어해야 하기 때문에? 직접 바꾸는건 안됨)
+//삭제-spread로 따로 예전거 불러와서 filter로 버릴거 빼서 버리기
 
   
